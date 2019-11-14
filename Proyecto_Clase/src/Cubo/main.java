@@ -17,9 +17,9 @@ public class main {
         
         Nodo_EjeZ aux = cubo.Buscar("1/2/3");
         if(aux != null){
-            aux.matriz.Insertar(1, 3, "pasta");
-            aux.matriz.Insertar(2, 3, "Cola");
-            aux.matriz.Graficar();
+            //aux.matriz.Insertar(1, 3, "pasta");
+            //aux.matriz.Insertar(2, 3, "Cola");
+            //aux.matriz.Graficar();
         }
        
     }

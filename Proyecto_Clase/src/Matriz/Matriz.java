@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Cubo;
+package Matriz;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -12,36 +12,35 @@ import java.io.PrintWriter;
  *
  * @author Eduardo
  */
-public class EjeXY {
-    public Cabecera columnaprimero;
-    public Cabecera columnaultimo;
-    public Cabecera filaprimero;
-    public Cabecera filaultimo;
-
-    public EjeXY() {
-        this.columnaprimero = null;
-        this.columnaultimo = null;
-        this.filaprimero = null;
-        this.filaultimo = null;
+public class Matriz {
+    public Cabecera firstColum;
+    public Cabecera lastColum;
+    public Cabecera firstF;
+    public Cabecera LastF;
+    
+    public Matriz() {
+        this.LastF=null;
+        this.firstColum=null;
+        this.firstF=null;
+        this.lastColum=null;
     }
     
-    public void existeX(int x,String producto){
+    public void existeX(int x, String producto){
         boolean estado=true;
         boolean encontrado=false;
-        Cabecera temp=columnaprimero;
-        Cabecera  aux;
-        if(columnaprimero==null){
-           Cabecera nuevo=new Cabecera();
-            nuevo.numero=x;
-            nuevo.producto=producto;
-            nuevo.primero=null;
-            nuevo.siguiente=null;
-            columnaprimero=nuevo;
-            columnaultimo=nuevo;
+        Cabecera temp=firstColum;
+        if(firstColum == null){
+            Cabecera nuevo=new Cabecera();
+            nuevo.setNumero(x);
+            nuevo.setDato(producto);
+            nuevo.setPrimero(null);
+            nuevo.setSiguiente(null);
+            firstColum = nuevo;
+            lastColum = nuevo;
         }else{
             while(estado==true){
                 if(temp!=null){
-                    if(temp.numero==x){
+                    if(temp.getNumero() == x){
                         estado=false;
                         encontrado=true;
                     }else{
@@ -55,23 +54,22 @@ public class EjeXY {
 
             if(encontrado==false){
                 Cabecera nuevo=new Cabecera();
-                nuevo.numero=x;
-                nuevo.producto=producto;
+                nuevo.setNumero(x);
+                nuevo.setDato(producto);
                 nuevo.primero=null;
-
-                if(x<columnaprimero.numero){
-                    nuevo.siguiente=columnaprimero;
-                    columnaprimero=nuevo;
-                }else if(x>columnaultimo.numero){
-                    columnaultimo.siguiente=nuevo;
+                if(x < firstColum.numero ){
+                    nuevo.siguiente=firstColum;
+                    firstColum=nuevo;
+                }else if(x > lastColum.numero){
+                    lastColum.siguiente=nuevo;
                     nuevo.siguiente=null;
-                    columnaultimo=nuevo;
+                    lastColum=nuevo;
                 }else{
-                    temp=columnaprimero;
+                    temp=firstColum ;
                     estado=true;
                     while(estado){
                         if(temp.siguiente!=null){
-                            if(x<temp.siguiente.numero){
+                            if(x < temp.siguiente.numero){
                               estado=false;
                             }else{
                                 temp=temp.siguiente;
@@ -80,7 +78,7 @@ public class EjeXY {
                             estado=false;
                         }
                     }
-                    aux=temp.siguiente;
+                    Cabecera aux=temp.siguiente;
                     temp.siguiente=nuevo;
                     nuevo.siguiente=aux;
                 }
@@ -90,20 +88,19 @@ public class EjeXY {
         }
     }
     
-     public void existeY(int y,String producto){
+    public void existeY(int y,String producto){
        boolean estado=true;
        boolean encontrado=false;
-       Cabecera temp=filaprimero;
+       Cabecera temp=firstF;
        Cabecera  auy;
-     //----------------------------------Si esta vacia la cabecera--------------------------------------
-       if(filaprimero==null){
+       if(firstF == null){
           Cabecera nuevo=new Cabecera();
            nuevo.primero=null;
            nuevo.numero=y;
-           nuevo.producto=producto;
+           nuevo.dato=producto;
            nuevo.siguiente=null;
-           filaprimero=nuevo;
-           filaultimo=nuevo;
+           firstF = nuevo;
+           LastF = nuevo;
        }else{
            while(estado==true){
                if(temp!=null){
@@ -123,16 +120,16 @@ public class EjeXY {
                Cabecera nuevo=new Cabecera();
                nuevo.primero=null;
                nuevo.numero=y;
-               nuevo.producto=producto;
-               if(y<filaprimero.numero){
-                   nuevo.siguiente=filaprimero;
-                   filaprimero=nuevo;
-               }else if(y>filaultimo.numero){
-                   filaultimo.siguiente=nuevo;
+               nuevo.dato=producto;
+               if(y < firstF.numero){
+                   nuevo.siguiente=firstF;
+                   firstF = nuevo;
+               }else if(y > LastF.numero){
+                   LastF.siguiente=nuevo;
                    nuevo.siguiente=null;
-                   filaultimo=nuevo;
+                   LastF=nuevo;
                }else{
-                   temp=filaprimero;
+                   temp = firstF;
                    estado=true;
                    while(estado){
                        if(temp.siguiente!=null){
@@ -155,11 +152,10 @@ public class EjeXY {
        }
 
    }
-     
-   public void guardarMatriz(int a, int b,String producto){
+    public void guardarMatriz(int a, int b,String producto){
         
-        Cabecera auxma=columnaprimero;
-        Cabecera aux2=filaprimero;
+        Cabecera auxma=firstColum;
+        Cabecera aux2=firstF;
         boolean estado;
         boolean encontrado=false;
         if(auxma!=null){
@@ -170,17 +166,14 @@ public class EjeXY {
             aux2=aux2.siguiente;
         }
         
-       Nodo mat=new Nodo();//string curso
-       Nodo temp;
-        mat.x=a;
-        mat.y=b;
-        mat.Producto=producto;
+       NodoMatriz mat=new NodoMatriz(a,b,producto);//string curso
+       NodoMatriz temp;
         if(auxma.primero==null){
             mat.siguiente=null;
             auxma.primero=mat;
             auxma.ultimo=mat;
         }else{
-            Nodo nodoma=auxma.primero;
+            NodoMatriz nodoma=auxma.primero;
             estado=true;
             while(estado==true){
                 if(nodoma!=null){
@@ -197,17 +190,17 @@ public class EjeXY {
             }
             if(encontrado==false){
                 if(b<auxma.primero.y){
-                    mat.anterior=null;
+                    mat.atras=null;
                     mat.siguiente=auxma.primero;
-                    auxma.primero.anterior=mat;
+                    auxma.primero.atras=mat;
                     auxma.primero=mat;
                 }else if(b>auxma.ultimo.y){
                     mat.siguiente=null;
-                    mat.anterior=auxma.ultimo;
+                    mat.atras=auxma.ultimo;
                     auxma.ultimo.siguiente=mat;
                     auxma.ultimo=mat;
                 }else{
-                    Nodo nodoauxiliar;
+                    NodoMatriz nodoauxiliar;
                     temp=auxma.primero;
                     estado=true;
                     while(estado){
@@ -230,15 +223,12 @@ public class EjeXY {
 
 
         }
-        
-
-        //-----------------------------------posicion en Y-------------------------------------------
         if(aux2.primero==null){
            mat.arriba=null;
            aux2.primero=mat;
            aux2.ultimo=mat;
         }else{
-            Nodo nodoma=aux2.primero;
+            NodoMatriz nodoma=aux2.primero;
             estado=true;
             encontrado=false;
             while(estado==true){
@@ -254,7 +244,6 @@ public class EjeXY {
                     encontrado=false;
                 }
             }
-            //------------------------------------if de encontrado-----------------------------
              if(encontrado==false){
                  if(a<aux2.primero.x){
                      mat.abajo=null;
@@ -267,7 +256,7 @@ public class EjeXY {
                      aux2.ultimo.arriba=mat;
                      aux2.ultimo=mat;
                  }else{
-                    Nodo nodoauxiliar;
+                    NodoMatriz nodoauxiliar;
                      temp=aux2.primero;
                      estado=true;
                      while(estado){
@@ -292,52 +281,29 @@ public class EjeXY {
         }
         }
     
-   
-   public void Insertar(int x, int y, String producto,String cliente,String hora){
-       existeX(x, hora);
-       existeY(y, cliente);
+    public void Insertar(int x, int y, String categoria,String producto){
+       existeX(x, producto);
+       existeY(y, categoria);
        guardarMatriz(x, y, producto);   
    }
-   
-   public Nodo Buscar(int x, int y){
-       Cabecera aux=columnaprimero;
-       boolean encontrado=false;
-       while(aux != null){
-           if(aux.numero == x ){
-              encontrado=true;
-              break;  
-            }
-           aux=aux.siguiente;
-        }
-        if(encontrado){
-            Nodo nodo=aux.primero;
-            while(nodo != null){
-                if(nodo.y == y){
-                    return nodo;
-                }
-                nodo=nodo.siguiente;
-            }
-        }
-        return null;
-   }
-   
-   public void Graficar(){
+    
+    public void Graficar(){
        FileWriter fichero = null;
        PrintWriter pw = null;
        try{
            fichero = new FileWriter("Matriz.dot");
            pw = new PrintWriter(fichero);
-           Cabecera aux2=columnaprimero;
-           Cabecera aux=filaprimero;
+           Cabecera aux2=firstColum;
+           Cabecera aux=firstF;
            pw.println("digraph G{");
            pw.println("node [shape = box]");
            pw.println("raiz[label=\"Matriz\"  group=1];");
            if (aux != null){
                while(aux != null){
-                   pw.println(aux.hashCode()+" [label=\""+aux.producto+"\" group = 1];");
+                   pw.println(aux.hashCode()+" [label=\""+aux.dato+"\" group = 1];");
                    aux=aux.siguiente;
                }
-               aux=filaprimero;
+               aux=firstF;
                while(aux != null){
                    if(aux.siguiente != null){
                        pw.println(aux.hashCode()+"->"+aux.siguiente.hashCode()+"[dir=both];");
@@ -347,18 +313,18 @@ public class EjeXY {
                
                while(aux2 != null){
                    int level = aux2.numero + 2;
-                   pw.println(aux2.hashCode()+" [label=\""+aux2.producto+"\" group = " +level+"];");
+                   pw.println(aux2.hashCode()+" [label=\""+aux2.dato+"\" group = " +level+"];");
                    aux2=aux2.siguiente;
                }
-               aux2=columnaprimero;
+               aux2=firstColum;
                while(aux2 != null){
                    if(aux2.siguiente != null){
                        pw.println(aux2.hashCode()+"->"+aux2.siguiente.hashCode()+"[dir=both];");
                    }
                    aux2=aux2.siguiente;
                }              
-               aux=filaprimero;
-               aux2=columnaprimero;
+               aux=firstF;
+               aux2=firstColum;
                pw.println("raiz ->"+aux.hashCode());
                pw.println("raiz ->"+aux2.hashCode());
                pw.println("{ rank  = same; raiz ");
@@ -367,21 +333,21 @@ public class EjeXY {
                    aux2=aux2.siguiente;
                }
                pw.println("}");
-               aux2=columnaprimero;
+               aux2=firstColum;
                while(aux2 != null){
                    int level = aux2.numero + 2;
-                   Nodo temp=aux2.primero;
+                   NodoMatriz temp=aux2.primero;
                    if(temp != null){
                        while(temp != null){
-                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+temp.Producto+"\" group = "+level+" ];");
+                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+temp.producto+"\" group = "+level+" ];");
                            temp=temp.siguiente;
                        }
                    }
                    aux2=aux2.siguiente;
                }
-               aux=filaprimero;
+               aux=firstF;
                while(aux != null){
-                   Nodo temp=aux.primero;
+                   NodoMatriz temp=aux.primero;
                    if(temp != null){
                        pw.println(aux.hashCode()+"->"+temp.hashCode());
                        while(temp.arriba != null){
@@ -399,9 +365,9 @@ public class EjeXY {
                    }
                    aux=aux.siguiente;
                }
-               aux2=columnaprimero;
+               aux2=firstColum;
                while(aux2 != null){
-                   Nodo temp = aux2.primero;
+                   NodoMatriz temp = aux2.primero;
                    if(temp != null){
                        pw.println(aux2.hashCode()+"->"+temp.hashCode()+"[dir=both];");
                        while(temp.siguiente != null){
@@ -436,6 +402,5 @@ public class EjeXY {
        
        
    }
-    
     
 }
