@@ -11,10 +11,14 @@ package Lista_Simple;
  */
 public class Nodo_Simple {
     private String user;
+    private String password;
+    private String apellido;
     private Nodo_Simple siguiente;
 
-    public Nodo_Simple(String user) {
+    public Nodo_Simple(String user,String apellido, String password) {
         this.user = user;
+        this.apellido = apellido;
+        this.password = password;
         this.siguiente = null;
     }
 
@@ -32,6 +36,22 @@ public class Nodo_Simple {
 
     public void setSiguiente(Nodo_Simple siguiente) {
         this.siguiente = siguiente;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
     
     
