@@ -6,6 +6,7 @@
 package Metodos;
 
 import Lista_Simple.Lista_Usuarios;
+import Matriz.Matriz;
 
 /**
  *
@@ -13,6 +14,7 @@ import Lista_Simple.Lista_Usuarios;
  */
 public class Singleton {
     public static Lista_Usuarios users = new Lista_Usuarios();
+    public static Matriz matriz = new Matriz();
     
     
 }

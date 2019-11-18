@@ -1,0 +1,17 @@
+digraph G{
+node [shape = box]
+raiz[label="Matriz"  group=1];
+418712999 [label="Categoria: Limpieza" group = 1];
+1216803888 [label="ID Producto: 1" group = 3];
+raiz ->418712999
+raiz ->1216803888
+{ rank  = same; raiz 
+1216803888;
+}
+637853966 [style=filled,fillcolor=seashell2,label= "Producto: caca&#92;n Cantidad: 23&#92;n Precio: 13.5" group = 3 ];
+418712999->637853966
+{ rank = same; 418712999;
+637853966;
+}
+1216803888->637853966[dir=both];
+}

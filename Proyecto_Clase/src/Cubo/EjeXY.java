@@ -25,7 +25,7 @@ public class EjeXY {
         this.filaultimo = null;
     }
     
-    public void existeX(int x,String producto){
+    public void existeX(int x,String hora){
         boolean estado=true;
         boolean encontrado=false;
         Cabecera temp=columnaprimero;
@@ -33,7 +33,7 @@ public class EjeXY {
         if(columnaprimero==null){
            Cabecera nuevo=new Cabecera();
             nuevo.numero=x;
-            nuevo.producto=producto;
+            nuevo.hora=hora;
             nuevo.primero=null;
             nuevo.siguiente=null;
             columnaprimero=nuevo;
@@ -56,7 +56,7 @@ public class EjeXY {
             if(encontrado==false){
                 Cabecera nuevo=new Cabecera();
                 nuevo.numero=x;
-                nuevo.producto=producto;
+                nuevo.hora=hora;
                 nuevo.primero=null;
 
                 if(x<columnaprimero.numero){
@@ -90,7 +90,7 @@ public class EjeXY {
         }
     }
     
-     public void existeY(int y,String producto){
+     public void existeY(int y,String Cliente){
        boolean estado=true;
        boolean encontrado=false;
        Cabecera temp=filaprimero;
@@ -100,7 +100,7 @@ public class EjeXY {
           Cabecera nuevo=new Cabecera();
            nuevo.primero=null;
            nuevo.numero=y;
-           nuevo.producto=producto;
+           nuevo.producto = Cliente;
            nuevo.siguiente=null;
            filaprimero=nuevo;
            filaultimo=nuevo;
@@ -123,7 +123,7 @@ public class EjeXY {
                Cabecera nuevo=new Cabecera();
                nuevo.primero=null;
                nuevo.numero=y;
-               nuevo.producto=producto;
+               nuevo.producto=Cliente;
                if(y<filaprimero.numero){
                    nuevo.siguiente=filaprimero;
                    filaprimero=nuevo;
@@ -156,7 +156,7 @@ public class EjeXY {
 
    }
      
-   public void guardarMatriz(int a, int b,String producto){
+   public void guardarMatriz(int a, int b,String producto,int cantidad){
         
         Cabecera auxma=columnaprimero;
         Cabecera aux2=filaprimero;
@@ -169,12 +169,12 @@ public class EjeXY {
         while(aux2.numero!=b){
             aux2=aux2.siguiente;
         }
-        
-       Nodo mat=new Nodo();//string curso
+       Nodo mat=new Nodo();
        Nodo temp;
         mat.x=a;
         mat.y=b;
         mat.Producto=producto;
+        mat.cantidad = cantidad;
         if(auxma.primero==null){
             mat.siguiente=null;
             auxma.primero=mat;
@@ -293,10 +293,10 @@ public class EjeXY {
         }
     
    
-   public void Insertar(int x, int y, String producto,String cliente,String hora){
+   public void Insertar(int x, int y, String producto,String cliente,String hora,int canidad){
        existeX(x, hora);
        existeY(y, cliente);
-       guardarMatriz(x, y, producto);   
+       guardarMatriz(x, y, producto,canidad);   
    }
    
    public Nodo Buscar(int x, int y){
@@ -325,7 +325,7 @@ public class EjeXY {
        FileWriter fichero = null;
        PrintWriter pw = null;
        try{
-           fichero = new FileWriter("Matriz.dot");
+           fichero = new FileWriter("MatrizVentas.dot");
            pw = new PrintWriter(fichero);
            Cabecera aux2=columnaprimero;
            Cabecera aux=filaprimero;
@@ -347,7 +347,7 @@ public class EjeXY {
                
                while(aux2 != null){
                    int level = aux2.numero + 2;
-                   pw.println(aux2.hashCode()+" [label=\""+aux2.producto+"\" group = " +level+"];");
+                   pw.println(aux2.hashCode()+" [label=\""+aux2.hora+"\" group = " +level+"];");
                    aux2=aux2.siguiente;
                }
                aux2=columnaprimero;
@@ -373,7 +373,8 @@ public class EjeXY {
                    Nodo temp=aux2.primero;
                    if(temp != null){
                        while(temp != null){
-                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+temp.Producto+"\" group = "+level+" ];");
+                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+"Producto: "+temp.Producto+"&#92;n Cantidad: "
+                                   +temp.cantidad+"\" group = "+level+" ];");
                            temp=temp.siguiente;
                        }
                    }
@@ -417,8 +418,8 @@ public class EjeXY {
            pw.println("}");
            fichero.close();
            String doPath="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
-           String fileInputPath = "Matriz.dot";
-           String fileOutPath = "Matriz.jpg";
+           String fileInputPath = "MatrizVentas.dot";
+           String fileOutPath = "MatrizVentas.jpg";
            String tParam = "-Tjpg";
            String toParam = "-o";
            String[] cmd = new String[5];

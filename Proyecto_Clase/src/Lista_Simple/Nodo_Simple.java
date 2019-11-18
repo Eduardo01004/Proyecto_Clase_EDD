@@ -5,6 +5,8 @@
  */
 package Lista_Simple;
 
+import Cubo.Eje_Z;
+
 /**
  *
  * @author Eduardo
@@ -14,12 +16,14 @@ public class Nodo_Simple {
     private String password;
     private String apellido;
     private Nodo_Simple siguiente;
+    public Eje_Z cubo;
 
     public Nodo_Simple(String user,String apellido, String password) {
         this.user = user;
         this.apellido = apellido;
         this.password = password;
         this.siguiente = null;
+        this.cubo = new Eje_Z();
     }
 
     public String getUser() {

@@ -187,9 +187,10 @@ public class Registrar extends javax.swing.JFrame {
        name = txt_newName.getText();
        apellido = txt_newapellido.getText();
        contra = txt_newpass.getText();
-       
        LinkedList.users.Insertar(name, apellido, contra);
+       LinkedList.users.Graficar();
        JOptionPane.showMessageDialog(null, "Insertado con exito");
+       
     }//GEN-LAST:event_btn_registrarActionPerformed
 
     /**

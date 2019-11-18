@@ -1,0 +1,9 @@
+digraph G{
+1825273975[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Eduardo"];
+1825273975->7228046
+7228046[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Saul"];
+7228046->759555966
+759555966[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Jorge"];
+759555966->1162907670
+1162907670[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Mario"];
+}

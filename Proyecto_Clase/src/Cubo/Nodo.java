@@ -17,6 +17,7 @@ public class Nodo {
     public  int x;//inicio
     public int y;//destino
     public String Producto;
+    public int cantidad;
     
     
     public void Nodo(){

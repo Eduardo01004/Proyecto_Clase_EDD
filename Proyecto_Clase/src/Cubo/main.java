@@ -14,12 +14,14 @@ public class main {
         Eje_Z cubo = new Eje_Z();
         
         cubo.Insertar("1/2/3");
-        
+        cubo.Insertar("16464");
+        cubo.Insertar("1/2/3");
+        cubo.Mostrar();
         Nodo_EjeZ aux = cubo.Buscar("1/2/3");
         if(aux != null){
-            //aux.matriz.Insertar(1, 3, "pasta");
-            //aux.matriz.Insertar(2, 3, "Cola");
-            //aux.matriz.Graficar();
+            aux.matriz.Insertar(1, 1, "pasta","Chino","10:40",1);
+            aux.matriz.Insertar(2, 2, "Cola","luis","10:30",5);
+            aux.matriz.Graficar();
         }
        
     }

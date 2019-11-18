@@ -1,0 +1,28 @@
+digraph G{
+node [shape = box]
+raiz[label="Matriz"  group=1];
+1720435669 [label="Chino" group = 1];
+1286783232 [label="luis" group = 1];
+1720435669->1286783232[dir=both];
+1698156408 [label="10:40" group = 3];
+1167116739 [label="10:30" group = 4];
+1698156408->1167116739[dir=both];
+raiz ->1720435669
+raiz ->1698156408
+{ rank  = same; raiz 
+1698156408;
+1167116739;
+}
+1837760739 [style=filled,fillcolor=seashell2,label= "Producto: pasta&#92;n Cantidad: 1" group = 3 ];
+707610042 [style=filled,fillcolor=seashell2,label= "Producto: Cola&#92;n Cantidad: 5" group = 4 ];
+1720435669->1837760739
+{ rank = same; 1720435669;
+1837760739;
+}
+1286783232->707610042
+{ rank = same; 1286783232;
+707610042;
+}
+1698156408->1837760739[dir=both];
+1167116739->707610042[dir=both];
+}

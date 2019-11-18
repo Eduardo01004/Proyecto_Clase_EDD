@@ -16,7 +16,7 @@ public class Cabecera {
     public Cabecera anterior;
     public int numero;
     public String producto;
-
+    public String hora;
     public Cabecera() {
         this.primero = null;
         this.ultimo = null;

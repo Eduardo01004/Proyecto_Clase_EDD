@@ -13,15 +13,19 @@ public class NodoMatriz {
     public int x;
     public int y;
     public String producto;
+    public double precio;
+    public int cantidad;
     public NodoMatriz siguiente;
     public NodoMatriz atras;
     public NodoMatriz arriba;
     public NodoMatriz abajo;
 
-    public NodoMatriz(int x, int y, String producto) {
+    public NodoMatriz(int x, int y, String producto,int cantidad, double precio) {
         this.x = x;
         this.y = y;
         this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
         this.abajo = null;
         this.arriba = null;
         this.siguiente = null;

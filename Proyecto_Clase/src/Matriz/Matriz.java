@@ -25,14 +25,14 @@ public class Matriz {
         this.lastColum=null;
     }
     
-    public void existeX(int x, String producto){
+    public void existeX(int x){
         boolean estado=true;
         boolean encontrado=false;
         Cabecera temp=firstColum;
         if(firstColum == null){
             Cabecera nuevo=new Cabecera();
             nuevo.setNumero(x);
-            nuevo.setDato(producto);
+            
             nuevo.setPrimero(null);
             nuevo.setSiguiente(null);
             firstColum = nuevo;
@@ -55,7 +55,6 @@ public class Matriz {
             if(encontrado==false){
                 Cabecera nuevo=new Cabecera();
                 nuevo.setNumero(x);
-                nuevo.setDato(producto);
                 nuevo.primero=null;
                 if(x < firstColum.numero ){
                     nuevo.siguiente=firstColum;
@@ -88,7 +87,7 @@ public class Matriz {
         }
     }
     
-    public void existeY(int y,String producto){
+    public void existeY(int y,String categoria){
        boolean estado=true;
        boolean encontrado=false;
        Cabecera temp=firstF;
@@ -97,7 +96,7 @@ public class Matriz {
           Cabecera nuevo=new Cabecera();
            nuevo.primero=null;
            nuevo.numero=y;
-           nuevo.dato=producto;
+           nuevo.dato=categoria;
            nuevo.siguiente=null;
            firstF = nuevo;
            LastF = nuevo;
@@ -120,7 +119,7 @@ public class Matriz {
                Cabecera nuevo=new Cabecera();
                nuevo.primero=null;
                nuevo.numero=y;
-               nuevo.dato=producto;
+               nuevo.dato=categoria;
                if(y < firstF.numero){
                    nuevo.siguiente=firstF;
                    firstF = nuevo;
@@ -152,7 +151,7 @@ public class Matriz {
        }
 
    }
-    public void guardarMatriz(int a, int b,String producto){
+    public void guardarMatriz(int a, int b,String producto,int cantidad, double precio){
         
         Cabecera auxma=firstColum;
         Cabecera aux2=firstF;
@@ -166,7 +165,7 @@ public class Matriz {
             aux2=aux2.siguiente;
         }
         
-       NodoMatriz mat=new NodoMatriz(a,b,producto);//string curso
+       NodoMatriz mat=new NodoMatriz(a,b,producto,cantidad,precio);//string curso
        NodoMatriz temp;
         if(auxma.primero==null){
             mat.siguiente=null;
@@ -281,17 +280,17 @@ public class Matriz {
         }
         }
     
-    public void Insertar(int x, int y, String categoria,String producto){
-       existeX(x, producto);
+    public void Insertar(int x, int y, String categoria,String producto,int cantidad, double precio){
+       existeX(x);
        existeY(y, categoria);
-       guardarMatriz(x, y, producto);   
+       guardarMatriz(x, y, producto,cantidad,precio);   
    }
     
     public void Graficar(){
        FileWriter fichero = null;
        PrintWriter pw = null;
        try{
-           fichero = new FileWriter("Matriz.dot");
+           fichero = new FileWriter("Matriz_inventario.dot");
            pw = new PrintWriter(fichero);
            Cabecera aux2=firstColum;
            Cabecera aux=firstF;
@@ -300,7 +299,7 @@ public class Matriz {
            pw.println("raiz[label=\"Matriz\"  group=1];");
            if (aux != null){
                while(aux != null){
-                   pw.println(aux.hashCode()+" [label=\""+aux.dato+"\" group = 1];");
+                   pw.println(aux.hashCode()+" [label=\""+"Categoria: "+aux.dato+"\" group = 1];");
                    aux=aux.siguiente;
                }
                aux=firstF;
@@ -313,7 +312,7 @@ public class Matriz {
                
                while(aux2 != null){
                    int level = aux2.numero + 2;
-                   pw.println(aux2.hashCode()+" [label=\""+aux2.dato+"\" group = " +level+"];");
+                   pw.println(aux2.hashCode()+" [label=\""+"ID Producto: "+aux2.numero+"\" group = " +level+"];");
                    aux2=aux2.siguiente;
                }
                aux2=firstColum;
@@ -339,7 +338,8 @@ public class Matriz {
                    NodoMatriz temp=aux2.primero;
                    if(temp != null){
                        while(temp != null){
-                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+temp.producto+"\" group = "+level+" ];");
+                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+"Producto: "+temp.producto+"&#92;n Cantidad: "+
+                                   temp.cantidad+"&#92;n Precio: "+temp.precio+"\" group = "+level+" ];");
                            temp=temp.siguiente;
                        }
                    }
@@ -383,9 +383,9 @@ public class Matriz {
            pw.println("}");
            fichero.close();
            String doPath="C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
-           String fileInputPath = "Matriz.dot";
-           String fileOutPath = "Matriz.jpg";
-           String tParam = "-Tjpg";
+           String fileInputPath = "Matriz_inventario.dot";
+           String fileOutPath = "Matriz_inventario.png";
+           String tParam = "-Tpng";
            String toParam = "-o";
            String[] cmd = new String[5];
            cmd[0] = doPath;

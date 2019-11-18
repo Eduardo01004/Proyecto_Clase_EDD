@@ -5,6 +5,8 @@
  */
 package Cubo;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo
@@ -20,17 +22,22 @@ public class Eje_Z {
     
     public void Insertar(String fecha){
         Nodo_EjeZ nuevo = new Nodo_EjeZ(fecha);
-        if (primero == null){
-            primero = nuevo;
-            primero.setSiguiente(null);
-            primero.setAtras(null);
-            ultimo = primero;
-        }
-        else{
-            ultimo.setSiguiente(nuevo);
-            nuevo.setSiguiente(null);
-            nuevo.setAtras(ultimo);
-            ultimo = nuevo;
+        Nodo_EjeZ aux = Buscar(fecha);
+        if (aux == null){
+            if (primero == null){
+                primero = nuevo;
+                primero.setSiguiente(null);
+                primero.setAtras(null);
+                ultimo = primero;
+            }
+            else{
+                ultimo.setSiguiente(nuevo);
+                nuevo.setSiguiente(null);
+                nuevo.setAtras(ultimo);
+                ultimo = nuevo;
+            }
+        }else{
+            //JOptionPane.showMessageDialog(null, "ya existe");
         }
     }
     
