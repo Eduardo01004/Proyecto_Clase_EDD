@@ -5,6 +5,17 @@
  */
 package Forms;
 
+import Cubo.Nodo;
+import Cubo.Nodo_EjeZ;
+import Lista_Simple.Nodo_Simple;
+import Matriz.Cabecera;
+import Matriz.NodoMatriz;
+import Metodos.Singleton;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Eduardo
@@ -14,8 +25,23 @@ public class Ventas extends javax.swing.JFrame {
     /**
      * Creates new form Ventas
      */
+    String fecha ="";
+    String hora = "";
+    String cant = "";
+    double cantidad;
+    String price = "";
+    double precio;
+    Singleton datos;
     public Ventas() {
         initComponents();
+        setLocationRelativeTo(null);
+        CargarCliente();
+        Cargar_Producto();
+        CargarFecha();
+        
+        Date date = new Date();
+        DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        txt_hora.setText(hourFormat.format(date));
     }
 
     /**
@@ -36,15 +62,15 @@ public class Ventas extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txt_fecha = new javax.swing.JTextField();
         txt_hora = new javax.swing.JTextField();
         txt_cantidad = new javax.swing.JTextField();
         txt_precio = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btn_vender = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btn_factura = new javax.swing.JButton();
         CB_clientes = new javax.swing.JComboBox<>();
         CB_produtos = new javax.swing.JComboBox<>();
+        CB_fecha = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,11 +106,32 @@ public class Ventas extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio");
 
-        jButton1.setText("Vender");
+        btn_vender.setText("Vender");
+        btn_vender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_venderActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Salir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Factura");
+        btn_factura.setText("Factura");
+        btn_factura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_facturaActionPerformed(evt);
+            }
+        });
+
+        CB_produtos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CB_produtosItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -102,27 +149,25 @@ public class Ventas extends javax.swing.JFrame {
                             .addComponent(txt_cantidad)
                             .addComponent(txt_precio, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(171, 171, 171)
-                        .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
                         .addGap(143, 143, 143)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_hora)
                             .addComponent(CB_clientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(CB_produtos, 0, 140, Short.MAX_VALUE))))
+                            .addComponent(CB_produtos, 0, 140, Short.MAX_VALUE)
+                            .addComponent(CB_fecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(57, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(jButton1)
+                .addComponent(btn_vender)
                 .addGap(77, 77, 77)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(btn_factura)
                 .addGap(43, 43, 43))
         );
         jPanel2Layout.setVerticalGroup(
@@ -131,7 +176,7 @@ public class Ventas extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txt_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CB_fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
@@ -156,11 +201,11 @@ public class Ventas extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btn_vender)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btn_factura))
                 .addContainerGap())
         );
 
@@ -197,6 +242,76 @@ public class Ventas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Menu menu = new Menu();
+        menu.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void CB_produtosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_produtosItemStateChanged
+        Cabecera aux = datos.matriz.BuscarProducto(CB_produtos.getSelectedItem().toString());
+        if (aux != null){
+            txt_precio.setText(String.valueOf(aux.precio));
+        }else{
+            JOptionPane.showMessageDialog(null,"El producto no existe");
+        }
+    }//GEN-LAST:event_CB_produtosItemStateChanged
+
+    private void btn_venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_venderActionPerformed
+        price = txt_precio.getText();
+        precio = Double.parseDouble(price);
+        cant = txt_cantidad.getText();
+        cantidad = Double.parseDouble(cant);
+        
+        Nodo_EjeZ aux = datos.fecha.Buscar(CB_fecha.getSelectedItem().toString());
+        if (aux != null){
+            aux.matriz.Insertar(CB_clientes.getSelectedItem().toString(),txt_hora.getText());
+            aux.matriz.Graficar();
+            Nodo temp = aux.matriz.Buscar(CB_clientes.getSelectedItem().toString());
+            if (temp != null){
+                temp.pila.Insertar(CB_produtos.getSelectedItem().toString(), cantidad, precio);
+                temp.pila.Graficar();
+                datos.matriz.Cantidad_Productos(CB_produtos.getSelectedItem().toString(), cantidad);
+                
+            }else{
+                JOptionPane.showMessageDialog(null,"El producto no existe");
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"La fecha no existe");
+        }
+    }//GEN-LAST:event_btn_venderActionPerformed
+
+    private void btn_facturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_facturaActionPerformed
+        Factura factura = new Factura();
+        factura.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_facturaActionPerformed
+
+    public void CargarCliente(){
+        Nodo_Simple aux = datos.users.primero;
+        while (aux != null){
+            CB_clientes.addItem(aux.getUser());
+            aux = aux.getSiguiente();
+        }   
+    }
+    
+    public void CargarFecha(){
+        Nodo_EjeZ aux = datos.fecha.getPrimero();
+        while(aux != null){
+            CB_fecha.addItem(aux.getFecha());
+            aux = aux.getSiguiente();
+        }
+    }
+    
+    public void Cargar_Producto(){
+        Cabecera nodo = datos.matriz.firstColum;
+        while (nodo != null){
+            CB_produtos.addItem(nodo.dato);
+            nodo = nodo.getSiguiente();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -234,10 +349,11 @@ public class Ventas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CB_clientes;
+    private javax.swing.JComboBox<String> CB_fecha;
     private javax.swing.JComboBox<String> CB_produtos;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_factura;
+    private javax.swing.JButton btn_vender;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,7 +364,6 @@ public class Ventas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txt_cantidad;
-    private javax.swing.JTextField txt_fecha;
     private javax.swing.JTextField txt_hora;
     private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables

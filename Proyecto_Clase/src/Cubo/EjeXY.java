@@ -89,7 +89,7 @@ public class EjeXY {
         }
     }
     
-     public void existeY(int y,String Cliente){
+     public void existeY(String Cliente){
        boolean estado=true;
        boolean encontrado=false;
        Cabecera temp=filaprimero;
@@ -97,7 +97,6 @@ public class EjeXY {
        if(filaprimero==null){
           Cabecera nuevo=new Cabecera();
            nuevo.primero=null;
-           nuevo.numero=y;
            nuevo.cliente = Cliente;
            nuevo.siguiente=null;
            filaprimero=nuevo;
@@ -105,7 +104,7 @@ public class EjeXY {
        }else{
            while(estado==true){
                if(temp!=null){
-                   if(temp.numero==y){
+                   if(temp.cliente.compareTo(Cliente) == 0){
                        estado=false;
                        encontrado=true;
                    }else{
@@ -120,12 +119,11 @@ public class EjeXY {
            if(encontrado==false){
                Cabecera nuevo=new Cabecera();
                nuevo.primero=null;
-               nuevo.numero=y;
                nuevo.cliente=Cliente;
-               if(y<filaprimero.numero){
+               if(Cliente.compareTo(filaprimero.cliente) < 0){
                    nuevo.siguiente=filaprimero;
                    filaprimero=nuevo;
-               }else if(y>filaultimo.numero){
+               }else if(Cliente.compareTo(filaultimo.cliente) > 0){
                    filaultimo.siguiente=nuevo;
                    nuevo.siguiente=null;
                    filaultimo=nuevo;
@@ -134,7 +132,7 @@ public class EjeXY {
                    estado=true;
                    while(estado){
                        if(temp.siguiente!=null){
-                           if(y<temp.siguiente.numero){
+                           if(Cliente.compareTo(temp.siguiente.cliente) < 0){
                              estado=false;
                            }else{
                                temp=temp.siguiente;
@@ -154,7 +152,7 @@ public class EjeXY {
 
    }
      
-   public void guardarMatriz(String a, int b,String cliente){
+   public void guardarMatriz(String a,String cliente){
         
         Cabecera auxma=columnaprimero;
         Cabecera aux2=filaprimero;
@@ -164,13 +162,13 @@ public class EjeXY {
         while(auxma.hora.compareTo(a) != 0){
             auxma=auxma.siguiente;
         }
-        while(aux2.numero!=b){
+        while(aux2.cliente.compareTo(cliente) != 0){
             aux2=aux2.siguiente;
         }
        Nodo mat=new Nodo();
        Nodo temp;
         mat.x=a;
-        mat.y=b;
+        mat.y=cliente;
         mat.cliente = cliente;
         mat.pila = new Pila();
         if(auxma.primero==null){
@@ -182,7 +180,7 @@ public class EjeXY {
             estado=true;
             while(estado==true){
                 if(nodoma!=null){
-                    if(nodoma.y==b){
+                    if(nodoma.y.compareTo(cliente) == 0 ){
                         estado=false;
                         encontrado=true;
                     }else{
@@ -194,12 +192,12 @@ public class EjeXY {
                 }
             }
             if(encontrado==false){
-                if(b<auxma.primero.y){
+                if(cliente.compareTo(auxma.primero.y) < 0){
                     mat.anterior=null;
                     mat.siguiente=auxma.primero;
                     auxma.primero.anterior=mat;
                     auxma.primero=mat;
-                }else if(b>auxma.ultimo.y){
+                }else if(cliente.compareTo(auxma.ultimo.y) > 0){
                     mat.siguiente=null;
                     mat.anterior=auxma.ultimo;
                     auxma.ultimo.siguiente=mat;
@@ -210,7 +208,7 @@ public class EjeXY {
                     estado=true;
                     while(estado){
                         if(temp.siguiente!=null){
-                            if(b<temp.siguiente.y){
+                            if(cliente.compareTo(temp.siguiente.y) < 0){
                               estado=false;
                             }else{
                                 temp=temp.siguiente;
@@ -291,17 +289,17 @@ public class EjeXY {
         }
     
    
-   public void Insertar(int idcliente,String cliente,String hora){
+   public void Insertar(String cliente,String hora){
        existeX( hora);
-       existeY(idcliente, cliente);
-       guardarMatriz( hora,idcliente,cliente);   
+       existeY(cliente);
+       guardarMatriz( hora,cliente);   
    }
    
-   public Nodo Buscar(String x, int y){
-       Cabecera aux=columnaprimero;
+   public Nodo Buscar( String y){
+       Cabecera aux=filaprimero;
        boolean encontrado=false;
        while(aux != null){
-           if(aux.hora.compareTo(x) == 0 ){
+           if(aux.cliente.compareTo(y) == 0 ){
               encontrado=true;
               break;  
             }
@@ -310,10 +308,10 @@ public class EjeXY {
         if(encontrado){
             Nodo nodo=aux.primero;
             while(nodo != null){
-                if(nodo.y == y){
+                if(nodo.y.compareTo(y) == 0){
                     return nodo;
                 }
-                nodo=nodo.siguiente;
+                nodo=nodo.arriba;
             }
         }
         return null;

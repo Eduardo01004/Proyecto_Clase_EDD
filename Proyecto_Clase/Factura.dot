@@ -2,8 +2,6 @@ digraph G{ rankdir=LR;
 node [shape= record, width=.1,height=.1];
 
 nodeTable [label = " 
-Total: 60.6|Producto: pan&#92;n Cantidad: 12.0&#92;n Precio:1.0
-Total: 60.6|Producto: Leche&#92;n Cantidad: 2.0&#92;n Precio:1.0
-Total: 60.6|Producto: huevos&#92;n Cantidad: 1.0&#92;n Precio:46.6
+1.0||Producto: 1&#92;n Cantidad: 1.0&#92;n Precio:1.0
 "];
 }

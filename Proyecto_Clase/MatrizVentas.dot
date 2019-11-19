@@ -1,17 +1,17 @@
 digraph G{
 node [shape = box]
 raiz[label="Matriz"  group=1];
-1020923989 [label="Chino" group = 1];
-1874154700 [label="10:10" group = 254];
-raiz ->1020923989
-raiz ->1874154700
+423083553 [label="Eduardo" group = 1];
+140457578 [label="13:20:43" group = 419];
+raiz ->423083553
+raiz ->140457578
 { rank  = same; raiz 
-1874154700;
+140457578;
 }
-1347870667 [style=filled,fillcolor=seashell2,label= "Cliente: Chino" group = 254 ];
-1020923989->1347870667
-{ rank = same; 1020923989;
-1347870667;
+264512362 [style=filled,fillcolor=seashell2,label= "Cliente: Eduardo" group = 419 ];
+423083553->264512362
+{ rank = same; 423083553;
+264512362;
 }
-1874154700->1347870667[dir=both];
+140457578->264512362[dir=both];
 }

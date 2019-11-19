@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
  * @author Eduardo
  */
 public class Eje_Z {
-    Nodo_EjeZ primero;
-    Nodo_EjeZ ultimo;
+    private Nodo_EjeZ primero;
+    private Nodo_EjeZ ultimo;
 
     public Eje_Z() {
         this.primero = null;
@@ -37,7 +37,7 @@ public class Eje_Z {
                 ultimo = nuevo;
             }
         }else{
-            //JOptionPane.showMessageDialog(null, "ya existe");
+            System.out.println("Ya existe, No se agrega");
         }
     }
     
@@ -60,6 +60,22 @@ public class Eje_Z {
             aux = aux.getSiguiente();
         }
         return null;
+    }
+
+    public Nodo_EjeZ getPrimero() {
+        return primero;
+    }
+
+    public void setPrimero(Nodo_EjeZ primero) {
+        this.primero = primero;
+    }
+
+    public Nodo_EjeZ getUltimo() {
+        return ultimo;
+    }
+
+    public void setUltimo(Nodo_EjeZ ultimo) {
+        this.ultimo = ultimo;
     }
     
     

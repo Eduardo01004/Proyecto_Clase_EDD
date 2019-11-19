@@ -7,6 +7,9 @@ package Forms;
 
 import Metodos.Singleton;
 import java.awt.Image;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -25,6 +28,10 @@ public class Menu extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         InsertarCate();
         
+        Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        mat.fecha.Insertar(dateFormat.format(date));
+        Metodos.Singleton.setDate(dateFormat.format(date));
         ImageIcon imagen = new ImageIcon("imagenes/2.jpg");
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(btn_stock.getWidth(), btn_stock.getHeight(), Image.SCALE_DEFAULT));
         btn_stock.setIcon(icono);
@@ -77,6 +84,12 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Inventario");
+
+        btn_ventas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ventasActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -209,6 +222,12 @@ public class Menu extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_btn_FacturasActionPerformed
+
+    private void btn_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ventasActionPerformed
+        Ventas ventas = new Ventas();
+        ventas.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_ventasActionPerformed
 
     /**
      * @param args the command line arguments

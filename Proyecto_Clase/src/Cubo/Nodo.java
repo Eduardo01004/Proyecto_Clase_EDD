@@ -17,7 +17,7 @@ public class Nodo {
     public Nodo arriba;
     public Nodo abajo;
     public  String x;//inicio
-    public int y;//destino
+    public String y;//destino
     public String cliente;
 
     public Pila pila;

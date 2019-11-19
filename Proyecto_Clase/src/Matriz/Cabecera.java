@@ -18,6 +18,7 @@ public class Cabecera {
     public NodoMatriz ultimo;
     public int numero;
     public String dato;
+    public double precio;
 
     public Cabecera() {
         this.siguiente = null;

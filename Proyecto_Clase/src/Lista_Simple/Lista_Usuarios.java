@@ -25,20 +25,17 @@ public class Lista_Usuarios {
     
     public void Insertar(String nombre,String apellido, String password){
         Nodo_Simple nuevo = new Nodo_Simple(nombre,apellido,password);
-        Nodo_Simple aux2 = Buscar(nombre);
-        if (aux2 != null){
-            if (esVacia()){
-                primero = nuevo;
-            }else{
-                Nodo_Simple aux = primero;
-                while(aux.getSiguiente() != null){
-                    aux = aux.getSiguiente();
-                }
-                aux.setSiguiente(nuevo);
-            }
+        
+        if (esVacia()){
+            primero = nuevo;
         }else{
-            JOptionPane.showMessageDialog(null, "El usuario "+ nombre +" Ya existe");
+            Nodo_Simple aux = primero;
+            while(aux.getSiguiente() != null){
+                aux = aux.getSiguiente();
+            }
+            aux.setSiguiente(nuevo);
         }
+        
     }
     
     public Nodo_Simple Buscar(String nombre){

@@ -15,9 +15,9 @@ import java.io.PrintWriter;
 public class Pila {
     public NodoPila primero;
     public NodoPila ultimo;
-    public double total;
+    public double total = 0;
     
-    public double suma;
+    public double suma=0;
 
     public Pila() {
         this.primero = null;
@@ -38,7 +38,8 @@ public class Pila {
             
     }
     public double Mostrar(){
-        double a;
+        double a=0;
+        total = 0;
         NodoPila aux=primero;
         if(aux != null){
             while(aux != null){
@@ -65,13 +66,14 @@ public class Pila {
             pw.println("nodeTable [label = \" ");
             NodoPila aux = primero;
             if (aux != null){
+                pw.print(tot+"|");
                 while(aux != null){
                     
                     if (aux.getSiguiente() != null){
-                        pw.println("Total: "+ tot+"|"+"Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());
+                        pw.println("Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());
                     }
                     else{
-                        pw.println("Total: "+tot +"|"+"Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());
+                        pw.println("|"+"Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());
                     }
                     aux = aux.getSiguiente();
                 }

@@ -8,6 +8,7 @@ package Matriz;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,7 +27,7 @@ public class Matriz {
         this.lastColum=null;
     }
     
-    public void existeX(int x,String producto){
+    public void existeX(int x,String producto,double precio){
         boolean estado=true;
         boolean encontrado=false;
         Cabecera temp=firstColum;
@@ -34,6 +35,7 @@ public class Matriz {
             Cabecera nuevo=new Cabecera();
             nuevo.setNumero(x);
             nuevo.dato = producto;
+            nuevo.precio = precio;
             nuevo.setPrimero(null);
             nuevo.setSiguiente(null);
             firstColum = nuevo;
@@ -58,6 +60,7 @@ public class Matriz {
                 nuevo.setNumero(x);
                 nuevo.primero=null;
                 nuevo.dato = producto;
+                nuevo.precio = precio;
                 if(x < firstColum.numero ){
                     nuevo.siguiente=firstColum;
                     firstColum=nuevo;
@@ -88,7 +91,16 @@ public class Matriz {
             }
         }
     }
-    
+    public Cabecera BuscarProducto(String producto){
+        Cabecera aux = firstColum;
+        while(aux != null){
+            if (aux.dato.compareTo(producto) == 0){
+                return aux;
+            }
+            aux = aux.siguiente;
+        }
+        return null;
+    }
 
     public void existeY(String categoria){
        boolean estado=true;
@@ -152,7 +164,7 @@ public class Matriz {
        }
 
    }
-    public void guardarMatriz(int a, String b,String producto,int cantidad, double precio){
+    public void guardarMatriz(int a, String b,String producto,double cantidad, double precio){
         
         Cabecera auxma=firstColum;
         Cabecera aux2=firstF;
@@ -280,9 +292,48 @@ public class Matriz {
         }
         }
         }
+    public NodoMatriz Buscar( String producto){
+       Cabecera aux = firstColum;
+       boolean encontrado=false;
+       while(aux != null){
+           if(aux.dato.compareTo(producto) == 0 ){
+              encontrado=true;
+              break;  
+            }
+           aux=aux.siguiente;
+        }
+        if(encontrado){
+            NodoMatriz nodo=aux.primero;
+            while(nodo != null){
+                if(nodo.producto.compareTo(producto) == 0){
+                    return nodo;
+                }
+                nodo=nodo.siguiente;
+            }
+        }
+        return null;
+   }
     
+    public void Cantidad_Productos(String producto,double cantidad){
+        NodoMatriz aux = Buscar(producto);
+        if (aux != null){
+            if (cantidad > aux.getCantidad()){
+                JOptionPane.showMessageDialog(null,"La cantidad que intenta comprar sobrepasa al del inventario");
+            }else{
+                if (aux.getCantidad() == 0.0){
+                    JOptionPane.showMessageDialog(null,"El producto " +producto +" Ya no tiene suministros en inventario");
+                }else{
+                    aux.setCantidad(aux.getCantidad() - cantidad);
+                    Graficar();
+                }  
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null,"El producto no existe");
+        }
+    }
     public void Insertar(int x,  String categoria,String producto,int cantidad, double precio){
-       existeX(x,producto);
+       existeX(x,producto,precio);
        existeY(categoria);
        guardarMatriz(x, categoria, producto,cantidad,precio);   
    }

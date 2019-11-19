@@ -158,6 +158,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn_ventas">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ventasActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>

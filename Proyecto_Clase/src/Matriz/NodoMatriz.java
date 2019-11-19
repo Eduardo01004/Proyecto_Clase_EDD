@@ -14,13 +14,13 @@ public class NodoMatriz {
     public String y;
     public String producto;
     public double precio;
-    public int cantidad;
+    public double cantidad;
     public NodoMatriz siguiente;
     public NodoMatriz atras;
     public NodoMatriz arriba;
     public NodoMatriz abajo;
 
-    public NodoMatriz(int x, String y, String producto,int cantidad, double precio) {
+    public NodoMatriz(int x, String y, String producto,double cantidad, double precio) {
         this.x = x;
         this.y = y;
         this.producto = producto;
@@ -86,6 +86,22 @@ public class NodoMatriz {
 
     public void setAbajo(NodoMatriz abajo) {
         this.abajo = abajo;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(double cantidad) {
+        this.cantidad = cantidad;
     }
     
     

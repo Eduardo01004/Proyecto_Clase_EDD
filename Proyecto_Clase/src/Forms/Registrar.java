@@ -5,6 +5,7 @@
  */
 package Forms;
 
+import Lista_Simple.Nodo_Simple;
 import Metodos.Singleton;
 import javax.swing.JOptionPane;
 
@@ -187,9 +188,14 @@ public class Registrar extends javax.swing.JFrame {
        name = txt_newName.getText();
        apellido = txt_newapellido.getText();
        contra = txt_newpass.getText();
-       LinkedList.users.Insertar(name, apellido, contra);
-       LinkedList.users.Graficar();
-       JOptionPane.showMessageDialog(null, "Insertado con exito");
+        Nodo_Simple aux = LinkedList.users.Buscar(name);
+        if (aux == null){
+            LinkedList.users.Insertar(name, apellido, contra);
+            LinkedList.users.Graficar();
+            JOptionPane.showMessageDialog(null, "Insertado con exito");
+        }else{
+            JOptionPane.showMessageDialog(null, "El usuario "+ name +" Ya existe");
+        }
        
     }//GEN-LAST:event_btn_registrarActionPerformed
 
