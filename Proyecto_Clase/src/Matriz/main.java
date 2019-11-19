@@ -17,7 +17,14 @@ public class main {
     public static void main(String[] args) {
         Matriz matrix = new Matriz();
         
-        //matrix.Insertar(1, 2, "Limpieza", "Jabon");
+        matrix.Insertar(1,"Liempieza" ,"Jabon",10,1.2);
+        matrix.Insertar(2,"Chucheria" ,"Tortrix",10,1.2);
+        matrix.Insertar(3,"Liquido" ,"Coca",10,1.2);
+        matrix.Insertar(4,"Pastas" ,"ina",10,1.2);
+        matrix.Insertar(5,"Atoles" ,"quaker",10,1.2);
+        matrix.Insertar(6,"Liempieza" ,"desodorante",10,1.2);
+        matrix.Insertar(7,"Liempieza" ,"shampoo",10,1.2);
+        
         matrix.Graficar();
     }
     

@@ -7,6 +7,7 @@ package Matriz;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -25,14 +26,14 @@ public class Matriz {
         this.lastColum=null;
     }
     
-    public void existeX(int x){
+    public void existeX(int x,String producto){
         boolean estado=true;
         boolean encontrado=false;
         Cabecera temp=firstColum;
         if(firstColum == null){
             Cabecera nuevo=new Cabecera();
             nuevo.setNumero(x);
-            
+            nuevo.dato = producto;
             nuevo.setPrimero(null);
             nuevo.setSiguiente(null);
             firstColum = nuevo;
@@ -56,6 +57,7 @@ public class Matriz {
                 Cabecera nuevo=new Cabecera();
                 nuevo.setNumero(x);
                 nuevo.primero=null;
+                nuevo.dato = producto;
                 if(x < firstColum.numero ){
                     nuevo.siguiente=firstColum;
                     firstColum=nuevo;
@@ -87,7 +89,8 @@ public class Matriz {
         }
     }
     
-    public void existeY(int y,String categoria){
+
+    public void existeY(String categoria){
        boolean estado=true;
        boolean encontrado=false;
        Cabecera temp=firstF;
@@ -95,7 +98,6 @@ public class Matriz {
        if(firstF == null){
           Cabecera nuevo=new Cabecera();
            nuevo.primero=null;
-           nuevo.numero=y;
            nuevo.dato=categoria;
            nuevo.siguiente=null;
            firstF = nuevo;
@@ -103,7 +105,7 @@ public class Matriz {
        }else{
            while(estado==true){
                if(temp!=null){
-                   if(temp.numero==y){
+                   if(temp.dato.compareTo(categoria) == 0){
                        estado=false;
                        encontrado=true;
                    }else{
@@ -118,12 +120,11 @@ public class Matriz {
            if(encontrado==false){
                Cabecera nuevo=new Cabecera();
                nuevo.primero=null;
-               nuevo.numero=y;
                nuevo.dato=categoria;
-               if(y < firstF.numero){
+               if(categoria.compareTo(firstF.dato) < 0){
                    nuevo.siguiente=firstF;
                    firstF = nuevo;
-               }else if(y > LastF.numero){
+               }else if(categoria.compareTo(LastF.dato) > 0){
                    LastF.siguiente=nuevo;
                    nuevo.siguiente=null;
                    LastF=nuevo;
@@ -132,7 +133,7 @@ public class Matriz {
                    estado=true;
                    while(estado){
                        if(temp.siguiente!=null){
-                           if(y<temp.siguiente.numero){
+                           if(categoria.compareTo(temp.siguiente.dato) < 0){
                              estado=false;
                            }else{
                                temp=temp.siguiente;
@@ -151,7 +152,7 @@ public class Matriz {
        }
 
    }
-    public void guardarMatriz(int a, int b,String producto,int cantidad, double precio){
+    public void guardarMatriz(int a, String b,String producto,int cantidad, double precio){
         
         Cabecera auxma=firstColum;
         Cabecera aux2=firstF;
@@ -161,7 +162,7 @@ public class Matriz {
         while(auxma.numero!=a){
             auxma=auxma.siguiente;
         }
-        while(aux2.numero!=b){
+        while(aux2.dato.compareTo(b) != 0){
             aux2=aux2.siguiente;
         }
         
@@ -176,7 +177,7 @@ public class Matriz {
             estado=true;
             while(estado==true){
                 if(nodoma!=null){
-                    if(nodoma.y==b){
+                    if(nodoma.y.compareTo(b) == 0){
                         estado=false;
                         encontrado=true;
                     }else{
@@ -188,12 +189,12 @@ public class Matriz {
                 }
             }
             if(encontrado==false){
-                if(b<auxma.primero.y){
+                if(b.compareTo(auxma.primero.y) < 0){
                     mat.atras=null;
                     mat.siguiente=auxma.primero;
                     auxma.primero.atras=mat;
                     auxma.primero=mat;
-                }else if(b>auxma.ultimo.y){
+                }else if( b.compareTo(auxma.ultimo.y) > 0){
                     mat.siguiente=null;
                     mat.atras=auxma.ultimo;
                     auxma.ultimo.siguiente=mat;
@@ -204,7 +205,7 @@ public class Matriz {
                     estado=true;
                     while(estado){
                         if(temp.siguiente!=null){
-                            if(b<temp.siguiente.y){
+                            if(b.compareTo(temp.siguiente.y) < 0){
                               estado=false;
                             }else{
                                 temp=temp.siguiente;
@@ -280,10 +281,10 @@ public class Matriz {
         }
         }
     
-    public void Insertar(int x, int y, String categoria,String producto,int cantidad, double precio){
-       existeX(x);
-       existeY(y, categoria);
-       guardarMatriz(x, y, producto,cantidad,precio);   
+    public void Insertar(int x,  String categoria,String producto,int cantidad, double precio){
+       existeX(x,producto);
+       existeY(categoria);
+       guardarMatriz(x, categoria, producto,cantidad,precio);   
    }
     
     public void Graficar(){
@@ -312,7 +313,7 @@ public class Matriz {
                
                while(aux2 != null){
                    int level = aux2.numero + 2;
-                   pw.println(aux2.hashCode()+" [label=\""+"ID Producto: "+aux2.numero+"\" group = " +level+"];");
+                   pw.println(aux2.hashCode()+" [label=\""+"ID Producto: "+aux2.numero+"&#92;n Producto: "+aux2.dato+"\" group = " +level+"];");
                    aux2=aux2.siguiente;
                }
                aux2=firstColum;

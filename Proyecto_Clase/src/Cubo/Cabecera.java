@@ -14,13 +14,24 @@ public class Cabecera {
     public Nodo ultimo;
     public Cabecera siguiente;
     public Cabecera anterior;
-    public int numero;
-    public String producto;
+    public String cliente;
     public String hora;
+    String total;
+    public int numero;
     public Cabecera() {
         this.primero = null;
         this.ultimo = null;
         this.siguiente = null;
+    }
+
+    
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
     }
     
     

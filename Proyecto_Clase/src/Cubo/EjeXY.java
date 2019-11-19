@@ -5,6 +5,7 @@
  */
 package Cubo;
 
+import Pila.Pila;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -25,14 +26,13 @@ public class EjeXY {
         this.filaultimo = null;
     }
     
-    public void existeX(int x,String hora){
+    public void existeX(String hora){
         boolean estado=true;
         boolean encontrado=false;
         Cabecera temp=columnaprimero;
         Cabecera  aux;
         if(columnaprimero==null){
            Cabecera nuevo=new Cabecera();
-            nuevo.numero=x;
             nuevo.hora=hora;
             nuevo.primero=null;
             nuevo.siguiente=null;
@@ -41,7 +41,7 @@ public class EjeXY {
         }else{
             while(estado==true){
                 if(temp!=null){
-                    if(temp.numero==x){
+                    if(temp.hora.compareTo(hora) == 0){
                         estado=false;
                         encontrado=true;
                     }else{
@@ -55,14 +55,13 @@ public class EjeXY {
 
             if(encontrado==false){
                 Cabecera nuevo=new Cabecera();
-                nuevo.numero=x;
                 nuevo.hora=hora;
                 nuevo.primero=null;
 
-                if(x<columnaprimero.numero){
+                if(hora.compareTo(columnaprimero.hora) < 0){
                     nuevo.siguiente=columnaprimero;
                     columnaprimero=nuevo;
-                }else if(x>columnaultimo.numero){
+                }else if(hora.compareTo(columnaultimo.hora) > 0){
                     columnaultimo.siguiente=nuevo;
                     nuevo.siguiente=null;
                     columnaultimo=nuevo;
@@ -71,7 +70,7 @@ public class EjeXY {
                     estado=true;
                     while(estado){
                         if(temp.siguiente!=null){
-                            if(x<temp.siguiente.numero){
+                            if(hora.compareTo(temp.siguiente.hora) < 0){
                               estado=false;
                             }else{
                                 temp=temp.siguiente;
@@ -95,12 +94,11 @@ public class EjeXY {
        boolean encontrado=false;
        Cabecera temp=filaprimero;
        Cabecera  auy;
-     //----------------------------------Si esta vacia la cabecera--------------------------------------
        if(filaprimero==null){
           Cabecera nuevo=new Cabecera();
            nuevo.primero=null;
            nuevo.numero=y;
-           nuevo.producto = Cliente;
+           nuevo.cliente = Cliente;
            nuevo.siguiente=null;
            filaprimero=nuevo;
            filaultimo=nuevo;
@@ -123,7 +121,7 @@ public class EjeXY {
                Cabecera nuevo=new Cabecera();
                nuevo.primero=null;
                nuevo.numero=y;
-               nuevo.producto=Cliente;
+               nuevo.cliente=Cliente;
                if(y<filaprimero.numero){
                    nuevo.siguiente=filaprimero;
                    filaprimero=nuevo;
@@ -156,14 +154,14 @@ public class EjeXY {
 
    }
      
-   public void guardarMatriz(int a, int b,String producto,int cantidad){
+   public void guardarMatriz(String a, int b,String cliente){
         
         Cabecera auxma=columnaprimero;
         Cabecera aux2=filaprimero;
         boolean estado;
         boolean encontrado=false;
         if(auxma!=null){
-        while(auxma.numero!=a){
+        while(auxma.hora.compareTo(a) != 0){
             auxma=auxma.siguiente;
         }
         while(aux2.numero!=b){
@@ -173,8 +171,8 @@ public class EjeXY {
        Nodo temp;
         mat.x=a;
         mat.y=b;
-        mat.Producto=producto;
-        mat.cantidad = cantidad;
+        mat.cliente = cliente;
+        mat.pila = new Pila();
         if(auxma.primero==null){
             mat.siguiente=null;
             auxma.primero=mat;
@@ -243,7 +241,7 @@ public class EjeXY {
             encontrado=false;
             while(estado==true){
                 if(nodoma!=null){
-                    if(nodoma.x==a){
+                    if(nodoma.x.compareTo(a)==0){
                         estado=false;
                         encontrado=true;
                     }else{
@@ -256,12 +254,12 @@ public class EjeXY {
             }
             //------------------------------------if de encontrado-----------------------------
              if(encontrado==false){
-                 if(a<aux2.primero.x){
+                 if(a.compareTo(aux2.primero.x) <0){
                      mat.abajo=null;
                      mat.arriba=aux2.primero;
                      aux2.primero.abajo=mat;
                      aux2.primero=mat;
-                 }else if(a>aux2.ultimo.x){
+                 }else if(a.compareTo(aux2.ultimo.x) > 0){
                      mat.arriba=null;
                      mat.abajo=aux2.ultimo;
                      aux2.ultimo.arriba=mat;
@@ -272,7 +270,7 @@ public class EjeXY {
                      estado=true;
                      while(estado){
                          if(temp.arriba!=null){
-                             if(a<temp.arriba.x){
+                             if(a.compareTo(temp.arriba.x) < 0){
                                estado=false;
                              }else{
                                  temp=temp.arriba;
@@ -293,17 +291,17 @@ public class EjeXY {
         }
     
    
-   public void Insertar(int x, int y, String producto,String cliente,String hora,int canidad){
-       existeX(x, hora);
-       existeY(y, cliente);
-       guardarMatriz(x, y, producto,canidad);   
+   public void Insertar(int idcliente,String cliente,String hora){
+       existeX( hora);
+       existeY(idcliente, cliente);
+       guardarMatriz( hora,idcliente,cliente);   
    }
    
-   public Nodo Buscar(int x, int y){
+   public Nodo Buscar(String x, int y){
        Cabecera aux=columnaprimero;
        boolean encontrado=false;
        while(aux != null){
-           if(aux.numero == x ){
+           if(aux.hora.compareTo(x) == 0 ){
               encontrado=true;
               break;  
             }
@@ -320,7 +318,18 @@ public class EjeXY {
         }
         return null;
    }
-   
+   public int CodigoASCIINombre(String nombre) {
+        int nombretamano=nombre.length();;
+        int total=0;
+        for (int a=0; a<nombretamano; a++) {
+            char character = nombre.charAt(a); // start on the first character
+            int ascii = (int) character; //convert the first character
+            total=total+ascii; 
+           //System.out.println(character+" = "+ ascii); // print the character and it's value in ascii
+        }
+        //System.out.println(" total "+total);
+        return total;
+    }
    public void Graficar(){
        FileWriter fichero = null;
        PrintWriter pw = null;
@@ -334,7 +343,7 @@ public class EjeXY {
            pw.println("raiz[label=\"Matriz\"  group=1];");
            if (aux != null){
                while(aux != null){
-                   pw.println(aux.hashCode()+" [label=\""+aux.producto+"\" group = 1];");
+                   pw.println(aux.hashCode()+" [label=\""+aux.cliente+"\" group = 1];");
                    aux=aux.siguiente;
                }
                aux=filaprimero;
@@ -346,7 +355,7 @@ public class EjeXY {
                }
                
                while(aux2 != null){
-                   int level = aux2.numero + 2;
+                   int level = CodigoASCIINombre(aux2.hora) + 2;
                    pw.println(aux2.hashCode()+" [label=\""+aux2.hora+"\" group = " +level+"];");
                    aux2=aux2.siguiente;
                }
@@ -369,12 +378,11 @@ public class EjeXY {
                pw.println("}");
                aux2=columnaprimero;
                while(aux2 != null){
-                   int level = aux2.numero + 2;
+                   int level = CodigoASCIINombre(aux2.hora) + 2;
                    Nodo temp=aux2.primero;
                    if(temp != null){
                        while(temp != null){
-                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+"Producto: "+temp.Producto+"&#92;n Cantidad: "
-                                   +temp.cantidad+"\" group = "+level+" ];");
+                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+"Cliente: "+temp.cliente+"\" group = "+level+" ];");
                            temp=temp.siguiente;
                        }
                    }

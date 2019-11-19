@@ -1,17 +1,40 @@
 digraph G{
 node [shape = box]
 raiz[label="Matriz"  group=1];
-418712999 [label="Categoria: Limpieza" group = 1];
-1216803888 [label="ID Producto: 1" group = 3];
-raiz ->418712999
-raiz ->1216803888
+1882024626 [label="Categoria: Bebidas" group = 1];
+1516575667 [label="Categoria: Boquitas" group = 1];
+1120436845 [label="Categoria: Dulces" group = 1];
+182012127 [label="Categoria: Embutidos" group = 1];
+1668568105 [label="Categoria: Enlatado" group = 1];
+289305463 [label="Categoria: Lacteo" group = 1];
+400769239 [label="Categoria: Limpieza" group = 1];
+1463577924 [label="Categoria: Organico" group = 1];
+1882024626->1516575667[dir=both];
+1516575667->1120436845[dir=both];
+1120436845->182012127[dir=both];
+182012127->1668568105[dir=both];
+1668568105->289305463[dir=both];
+289305463->400769239[dir=both];
+400769239->1463577924[dir=both];
+649193886 [label="ID Producto: 1" group = 3];
+249519909 [label="ID Producto: 2" group = 4];
+649193886->249519909[dir=both];
+raiz ->1882024626
+raiz ->649193886
 { rank  = same; raiz 
-1216803888;
+649193886;
+249519909;
 }
-637853966 [style=filled,fillcolor=seashell2,label= "Producto: caca&#92;n Cantidad: 23&#92;n Precio: 13.5" group = 3 ];
-418712999->637853966
-{ rank = same; 418712999;
-637853966;
+184222762 [style=filled,fillcolor=seashell2,label= "Producto: Huevos&#92;n Cantidad: 12&#92;n Precio: 13.2" group = 3 ];
+1263047086 [style=filled,fillcolor=seashell2,label= "Producto: Leche&#92;n Cantidad: 31&#92;n Precio: 55.0" group = 4 ];
+182012127->184222762
+{ rank = same; 182012127;
+184222762;
 }
-1216803888->637853966[dir=both];
+289305463->1263047086
+{ rank = same; 289305463;
+1263047086;
+}
+649193886->184222762[dir=both];
+249519909->1263047086[dir=both];
 }

@@ -5,6 +5,7 @@
  */
 package Forms;
 
+import Metodos.Singleton;
 import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -18,16 +19,28 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    
+    Singleton mat;
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
+        InsertarCate();
         
         ImageIcon imagen = new ImageIcon("imagenes/2.jpg");
         Icon icono = new ImageIcon(imagen.getImage().getScaledInstance(btn_stock.getWidth(), btn_stock.getHeight(), Image.SCALE_DEFAULT));
         btn_stock.setIcon(icono);
     }
 
+    public void InsertarCate(){
+        mat.matriz.existeY("Limpieza");
+        mat.matriz.existeY("Bebidas");
+        mat.matriz.existeY("Boquitas");
+        mat.matriz.existeY("Higiene");
+        mat.matriz.existeY("Embutidos");
+        mat.matriz.existeY("Lacteo");
+        mat.matriz.existeY("Enlatado");
+        mat.matriz.existeY("Medicamento");
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

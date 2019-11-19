@@ -11,7 +11,7 @@ package Matriz;
  */
 public class NodoMatriz {
     public int x;
-    public int y;
+    public String y;
     public String producto;
     public double precio;
     public int cantidad;
@@ -20,7 +20,7 @@ public class NodoMatriz {
     public NodoMatriz arriba;
     public NodoMatriz abajo;
 
-    public NodoMatriz(int x, int y, String producto,int cantidad, double precio) {
+    public NodoMatriz(int x, String y, String producto,int cantidad, double precio) {
         this.x = x;
         this.y = y;
         this.producto = producto;
@@ -40,11 +40,11 @@ public class NodoMatriz {
         this.x = x;
     }
 
-    public int getY() {
+    public String getY() {
         return y;
     }
 
-    public void setY(int y) {
+    public void setY(String y) {
         this.y = y;
     }
 

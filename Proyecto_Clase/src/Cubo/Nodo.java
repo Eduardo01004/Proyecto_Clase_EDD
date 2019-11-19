@@ -5,6 +5,8 @@
  */
 package Cubo;
 
+import Pila.Pila;
+
 /**
  *
  * @author Eduardo
@@ -14,10 +16,11 @@ public class Nodo {
     public Nodo anterior;
     public Nodo arriba;
     public Nodo abajo;
-    public  int x;//inicio
+    public  String x;//inicio
     public int y;//destino
-    public String Producto;
-    public int cantidad;
+    public String cliente;
+
+    public Pila pila;
     
     
     public void Nodo(){

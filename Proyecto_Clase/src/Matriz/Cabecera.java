@@ -5,6 +5,8 @@
  */
 package Matriz;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author Eduardo
@@ -71,6 +73,7 @@ public class Cabecera {
     public void setDato(String dato) {
         this.dato = dato;
     }
+    
     
     
     
