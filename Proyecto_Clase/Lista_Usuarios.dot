@@ -1,3 +1,7 @@
 digraph G{
-1574633562[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Eduardo"];
+354550499[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Eduardo&#92;n  Password: ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f"];
+354550499->293856029
+293856029[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Saul&#92;n  Password: 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"];
+293856029->1318815754
+1318815754[shape=record, style=filled, fillcolor=seashell2,label="Usuario: Alejandra&#92;n  Password: 8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"];
 }

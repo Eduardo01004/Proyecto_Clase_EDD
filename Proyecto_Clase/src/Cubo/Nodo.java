@@ -19,6 +19,7 @@ public class Nodo {
     public  String x;//inicio
     public String y;//destino
     public String cliente;
+    public String usuario;
 
     public Pila pila;
     

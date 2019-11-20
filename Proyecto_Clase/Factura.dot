@@ -2,6 +2,9 @@ digraph G{ rankdir=LR;
 node [shape= record, width=.1,height=.1];
 
 nodeTable [label = " 
-1.0||Producto: 1&#92;n Cantidad: 1.0&#92;n Precio:1.0
+Realizado por: Eduardo&#92;n Cliente: Luis&#92;n Total: 218.0|Producto: fofo&#92;n Cantidad: 2.0&#92;n Precio:20.0
+Producto: popo&#92;n Cantidad: 2.0&#92;n Precio:65.0
+Producto: caca&#92;n Cantidad: 2.0&#92;n Precio:12.0
+|Producto: caca&#92;n Cantidad: 2.0&#92;n Precio:12.0
 "];
 }

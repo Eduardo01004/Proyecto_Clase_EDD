@@ -1,17 +1,31 @@
 digraph G{
 node [shape = box]
 raiz[label="Matriz"  group=1];
-423083553 [label="Eduardo" group = 1];
-140457578 [label="13:20:43" group = 419];
-raiz ->423083553
-raiz ->140457578
+499198148 [label="Usuario: Eduardo" group = 1];
+898895932 [label="Hora: 22:12:30" group = 416];
+935816486 [label="Hora: 22:13:17" group = 422];
+1346758398 [label="Hora: 22:14:37" group = 425];
+898895932->935816486[dir=both];
+935816486->1346758398[dir=both];
+raiz ->499198148
+raiz ->898895932
 { rank  = same; raiz 
-140457578;
+898895932;
+935816486;
+1346758398;
 }
-264512362 [style=filled,fillcolor=seashell2,label= "Cliente: Eduardo" group = 419 ];
-423083553->264512362
-{ rank = same; 423083553;
-264512362;
+436916535 [style=filled,fillcolor=seashell2,label= "Vendedor: Eduardo&#92;n Cliente: Luis" group = 416 ];
+1673064934 [style=filled,fillcolor=seashell2,label= "Vendedor: Eduardo&#92;n Cliente: Mario Ramirez" group = 422 ];
+774532772 [style=filled,fillcolor=seashell2,label= "Vendedor: Eduardo&#92;n Cliente: Luis" group = 425 ];
+499198148->436916535
+436916535->1673064934[dir=both];
+1673064934->774532772[dir=both];
+{ rank = same; 499198148;
+436916535;
+1673064934;
+774532772;
 }
-140457578->264512362[dir=both];
+898895932->436916535[dir=both];
+935816486->1673064934[dir=both];
+1346758398->774532772[dir=both];
 }

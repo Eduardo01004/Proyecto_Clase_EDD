@@ -20,6 +20,7 @@ public class Singleton {
     
     private static String date = "";
     private static String user = "";
+    private static String cliente = "";
 
     public static String getDate() {
         return date;
@@ -35,6 +36,14 @@ public class Singleton {
 
     public static void setUser(String user) {
         Singleton.user = user;
+    }
+
+    public static String getCliente() {
+        return cliente;
+    }
+
+    public static void setCliente(String cliente) {
+        Singleton.cliente = cliente;
     }
 
     

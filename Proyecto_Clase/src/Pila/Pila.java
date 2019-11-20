@@ -54,7 +54,7 @@ public class Pila {
         return a;
     }
     
-    public void Graficar(){
+    public void Graficar(String usuario,String cliente){
         FileWriter fw = null;
         PrintWriter pw = null;
         double tot=Mostrar();
@@ -66,11 +66,11 @@ public class Pila {
             pw.println("nodeTable [label = \" ");
             NodoPila aux = primero;
             if (aux != null){
-                pw.print(tot+"|");
+                pw.print("Realizado por: "+usuario+"&#92;n Cliente: "+ cliente+"&#92;n Total: "+tot+"|");
                 while(aux != null){
                     
                     if (aux.getSiguiente() != null){
-                        pw.println("Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());
+                        pw.println("|"+"Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());
                     }
                     else{
                         pw.println("|"+"Producto: "+aux.getProducto()+"&#92;n Cantidad: "+aux.getCantidad()+"&#92;n Precio:" +aux.getPrecio());

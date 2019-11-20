@@ -32,6 +32,7 @@ public class Ventas extends javax.swing.JFrame {
     String price = "";
     double precio;
     Singleton datos;
+    String cliente = "";
     public Ventas() {
         initComponents();
         setLocationRelativeTo(null);
@@ -71,6 +72,8 @@ public class Ventas extends javax.swing.JFrame {
         CB_clientes = new javax.swing.JComboBox<>();
         CB_produtos = new javax.swing.JComboBox<>();
         CB_fecha = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        txt_cliente = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,7 +91,7 @@ public class Ventas extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Cliente");
+        jLabel3.setText("Usuario");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -106,6 +109,9 @@ public class Ventas extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Precio");
 
+        btn_vender.setBackground(new java.awt.Color(77, 19, 209));
+        btn_vender.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_vender.setForeground(new java.awt.Color(255, 255, 255));
         btn_vender.setText("Vender");
         btn_vender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +119,9 @@ public class Ventas extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(217, 30, 24));
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Salir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,6 +129,9 @@ public class Ventas extends javax.swing.JFrame {
             }
         });
 
+        btn_factura.setBackground(new java.awt.Color(77, 19, 209));
+        btn_factura.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_factura.setForeground(new java.awt.Color(255, 255, 255));
         btn_factura.setText("Factura");
         btn_factura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,21 +145,25 @@ public class Ventas extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Cliente");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(btn_vender)
+                .addGap(77, 77, 77)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(btn_factura)
+                .addGap(43, 43, 43))
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(145, 145, 145)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_cantidad)
-                            .addComponent(txt_precio, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -159,16 +175,18 @@ public class Ventas extends javax.swing.JFrame {
                             .addComponent(txt_hora)
                             .addComponent(CB_clientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(CB_produtos, 0, 140, Short.MAX_VALUE)
-                            .addComponent(CB_fecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(57, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(btn_vender)
-                .addGap(77, 77, 77)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addComponent(btn_factura)
-                .addGap(43, 43, 43))
+                            .addComponent(CB_fecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8))
+                        .addGap(145, 145, 145)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_cantidad)
+                            .addComponent(txt_precio, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(txt_cliente))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +219,11 @@ public class Ventas extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(txt_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txt_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_vender)
                     .addComponent(jButton2)
@@ -263,15 +285,17 @@ public class Ventas extends javax.swing.JFrame {
         cant = txt_cantidad.getText();
         cantidad = Double.parseDouble(cant);
         
+        cliente = txt_cliente.getText();
+        Metodos.Singleton.setCliente(cliente);
         Nodo_EjeZ aux = datos.fecha.Buscar(CB_fecha.getSelectedItem().toString());
         if (aux != null){
-            aux.matriz.Insertar(CB_clientes.getSelectedItem().toString(),txt_hora.getText());
-            aux.matriz.Graficar();
-            Nodo temp = aux.matriz.Buscar(CB_clientes.getSelectedItem().toString());
+            aux.matriz.Insertar(CB_clientes.getSelectedItem().toString(),txt_hora.getText(),cliente);
+            //aux.matriz.Graficar(Metodos.);
+            Nodo temp = aux.matriz.Buscar(CB_clientes.getSelectedItem().toString(),cliente);
             if (temp != null){
                 temp.pila.Insertar(CB_produtos.getSelectedItem().toString(), cantidad, precio);
-                temp.pila.Graficar();
                 datos.matriz.Cantidad_Productos(CB_produtos.getSelectedItem().toString(), cantidad);
+                JOptionPane.showMessageDialog(null,"La Venta ha sido realizada con exito");
                 
             }else{
                 JOptionPane.showMessageDialog(null,"El producto no existe");
@@ -361,9 +385,11 @@ public class Ventas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txt_cantidad;
+    private javax.swing.JTextField txt_cliente;
     private javax.swing.JTextField txt_hora;
     private javax.swing.JTextField txt_precio;
     // End of variables declaration//GEN-END:variables

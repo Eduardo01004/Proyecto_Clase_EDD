@@ -152,7 +152,7 @@ public class EjeXY {
 
    }
      
-   public void guardarMatriz(String a,String cliente){
+   public void guardarMatriz(String a,String cliente,String usuario){
         
         Cabecera auxma=columnaprimero;
         Cabecera aux2=filaprimero;
@@ -170,6 +170,7 @@ public class EjeXY {
         mat.x=a;
         mat.y=cliente;
         mat.cliente = cliente;
+        mat.usuario = usuario;
         mat.pila = new Pila();
         if(auxma.primero==null){
             mat.siguiente=null;
@@ -289,13 +290,13 @@ public class EjeXY {
         }
     
    
-   public void Insertar(String cliente,String hora){
+   public void Insertar(String cliente,String hora,String usuario){
        existeX( hora);
        existeY(cliente);
-       guardarMatriz( hora,cliente);   
+       guardarMatriz( hora,cliente,usuario);   
    }
    
-   public Nodo Buscar( String y){
+   public Nodo Buscar( String y,String cliente){
        Cabecera aux=filaprimero;
        boolean encontrado=false;
        while(aux != null){
@@ -308,7 +309,7 @@ public class EjeXY {
         if(encontrado){
             Nodo nodo=aux.primero;
             while(nodo != null){
-                if(nodo.y.compareTo(y) == 0){
+                if(nodo.usuario.compareTo(cliente) == 0){
                     return nodo;
                 }
                 nodo=nodo.arriba;
@@ -341,7 +342,7 @@ public class EjeXY {
            pw.println("raiz[label=\"Matriz\"  group=1];");
            if (aux != null){
                while(aux != null){
-                   pw.println(aux.hashCode()+" [label=\""+aux.cliente+"\" group = 1];");
+                   pw.println(aux.hashCode()+" [label=\""+"Usuario: "+aux.cliente+"\" group = 1];");
                    aux=aux.siguiente;
                }
                aux=filaprimero;
@@ -354,7 +355,7 @@ public class EjeXY {
                
                while(aux2 != null){
                    int level = CodigoASCIINombre(aux2.hora) + 2;
-                   pw.println(aux2.hashCode()+" [label=\""+aux2.hora+"\" group = " +level+"];");
+                   pw.println(aux2.hashCode()+" [label=\""+"Hora: "+aux2.hora+"\" group = " +level+"];");
                    aux2=aux2.siguiente;
                }
                aux2=columnaprimero;
@@ -380,7 +381,8 @@ public class EjeXY {
                    Nodo temp=aux2.primero;
                    if(temp != null){
                        while(temp != null){
-                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+"Cliente: "+temp.cliente+"\" group = "+level+" ];");
+                           pw.println(temp.hashCode()+" [style=filled,fillcolor=seashell2,label= \""+"Vendedor: "+temp.cliente+""+"&#92;n Cliente: "+temp.usuario+
+                                   "\" group = "+level+" ];");
                            temp=temp.siguiente;
                        }
                    }

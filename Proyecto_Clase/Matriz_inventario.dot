@@ -1,31 +1,41 @@
 digraph G{
 node [shape = box]
 raiz[label="Matriz"  group=1];
-960840988 [label="Categoria: Bebidas" group = 1];
-1742038016 [label="Categoria: Boquitas" group = 1];
-1384080230 [label="Categoria: Embutidos" group = 1];
-1934208243 [label="Categoria: Enlatado" group = 1];
-1622632995 [label="Categoria: Higiene" group = 1];
-747562833 [label="Categoria: Lacteo" group = 1];
-96720373 [label="Categoria: Limpieza" group = 1];
-1003736970 [label="Categoria: Medicamento" group = 1];
-960840988->1742038016[dir=both];
-1742038016->1384080230[dir=both];
-1384080230->1934208243[dir=both];
-1934208243->1622632995[dir=both];
-1622632995->747562833[dir=both];
-747562833->96720373[dir=both];
-96720373->1003736970[dir=both];
-1836351770 [label="ID Producto: 1&#92;n Producto: 1" group = 3];
-raiz ->960840988
-raiz ->1836351770
+1199412169 [label="Categoria: a" group = 1];
+158301132 [label="Categoria: b" group = 1];
+438156904 [label="Categoria: c" group = 1];
+282672291 [label="Categoria: d" group = 1];
+1199412169->158301132[dir=both];
+158301132->438156904[dir=both];
+438156904->282672291[dir=both];
+691005268 [label="ID Producto: 1&#92;n Producto: caca" group = 3];
+310455195 [label="ID Producto: 2&#92;n Producto: popo" group = 4];
+104767966 [label="ID Producto: 3&#92;n Producto: fofo" group = 5];
+691005268->310455195[dir=both];
+310455195->104767966[dir=both];
+raiz ->1199412169
+raiz ->691005268
 { rank  = same; raiz 
-1836351770;
+691005268;
+310455195;
+104767966;
 }
-1752525855 [style=filled,fillcolor=seashell2,label= "Producto: 1&#92;n Cantidad: 0.0&#92;n Precio: 1.0" group = 3 ];
-1384080230->1752525855
-{ rank = same; 1384080230;
-1752525855;
+392555543 [style=filled,fillcolor=seashell2,label= "Producto: caca&#92;n Cantidad: 8.0&#92;n Precio: 12.0" group = 3 ];
+1874205010 [style=filled,fillcolor=seashell2,label= "Producto: popo&#92;n Cantidad: 18.0&#92;n Precio: 65.0" group = 4 ];
+1980999563 [style=filled,fillcolor=seashell2,label= "Producto: fofo&#92;n Cantidad: 17.0&#92;n Precio: 20.0" group = 5 ];
+1199412169->392555543
+{ rank = same; 1199412169;
+392555543;
 }
-1836351770->1752525855[dir=both];
+158301132->1874205010
+{ rank = same; 158301132;
+1874205010;
+}
+438156904->1980999563
+{ rank = same; 438156904;
+1980999563;
+}
+691005268->392555543[dir=both];
+310455195->1874205010[dir=both];
+104767966->1980999563[dir=both];
 }

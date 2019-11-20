@@ -78,7 +78,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btn_Reportes" pref="121" max="32767" attributes="0"/>
+                                  <Component id="btn_Reportes" max="32767" attributes="0"/>
                                   <Component id="btn_stock" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btn_ventas" pref="85" max="32767" attributes="0"/>
+                          <Component id="btn_ventas" max="32767" attributes="0"/>
                           <Component id="btn_stock" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -126,11 +126,11 @@
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btn_Facturas" alignment="0" min="-2" pref="85" max="-2" attributes="0"/>
-                          <Component id="btn_Reportes" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btn_Reportes" max="32767" attributes="0"/>
+                          <Component id="btn_Facturas" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -158,6 +158,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn_ventas">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\Eduardo\Desktop\Edd2019\EDD_CLASE\Proyecto_Clase\imagenes\artboard_123056.png"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ventasActionPerformed"/>
               </Events>
@@ -174,11 +179,21 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btn_Reportes">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\Eduardo\Desktop\Edd2019\EDD_CLASE\Proyecto_Clase\imagenes\custom-reports256_24920.png"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_ReportesActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btn_Facturas">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="2" name="C:\Users\Eduardo\Desktop\Edd2019\EDD_CLASE\Proyecto_Clase\imagenes\loginmanager_10029.png"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_FacturasActionPerformed"/>
               </Events>

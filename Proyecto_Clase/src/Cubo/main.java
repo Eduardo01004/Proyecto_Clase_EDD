@@ -28,15 +28,15 @@ public class main {
         mat.Graficar();
         Nodo_EjeZ aux = cubo.Buscar("1/2/3");
         if(aux != null){
-            aux.matriz.Insertar( "Chino", "10:10");
-            aux.matriz.Graficar();
+            aux.matriz.Insertar( "Chino", "10:10","caca");
+            //aux.matriz.Graficar();
             
-            Nodo temp = aux.matriz.Buscar("Chino");
+            Nodo temp = aux.matriz.Buscar("Chino","caca");
             if(aux != null ){
                temp.pila.Insertar("huevos",1,46.6 );
                temp.pila.Insertar("Leche",2,1.0 );
                temp.pila.Insertar("pan",12,1 );
-               temp.pila.Graficar();
+               //temp.pila.Graficar("sda");
                mat.Cantidad_Productos("huevos",5);
             }else{
                 System.out.println("NO se encuentra el dato");

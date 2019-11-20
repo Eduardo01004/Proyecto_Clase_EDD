@@ -332,6 +332,16 @@ public class Matriz {
             JOptionPane.showMessageDialog(null,"El producto no existe");
         }
     }
+    
+    public void Cantidad(String producto,double cantidad){
+        NodoMatriz aux = Buscar(producto);
+        if (aux != null){
+            aux.setCantidad(aux.getCantidad()+cantidad);
+            Graficar();   
+        }else{
+            JOptionPane.showMessageDialog(null,"El producto no existe");
+        }
+    }
     public void Insertar(int x,  String categoria,String producto,int cantidad, double precio){
        existeX(x,producto,precio);
        existeY(categoria);

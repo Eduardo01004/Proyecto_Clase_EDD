@@ -65,7 +65,8 @@ public class Lista_Usuarios {
             pw.println("digraph G{");
             if (aux != null){
                 while (aux != null){
-                    pw.println(aux.hashCode()+"[shape=record, style=filled, fillcolor=seashell2,label=\"Usuario: "+aux.getUser()+  "\"];");
+                    pw.println(aux.hashCode()+"[shape=record, style=filled, fillcolor=seashell2,label=\"Usuario: "+aux.getUser()+"&#92;n  Password: "+
+                            aux.getPassword()+"\"];");
                     if (aux.getSiguiente() != null){
                         pw.println(aux.hashCode()+"->"+aux.getSiguiente().hashCode());
                     }

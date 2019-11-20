@@ -5,7 +5,9 @@
  */
 package Forms;
 
+import Cubo.Nodo_EjeZ;
 import Metodos.Metodos_Funciones;
+import Metodos.Singleton;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.ImageIcon;
@@ -22,9 +24,11 @@ public class Reportes extends javax.swing.JFrame {
     byte[] imagen;
     File archivo;
     Metodos_Funciones gestion = new Metodos_Funciones();
+    Singleton s;
     public Reportes() {
         initComponents();
         setLocationRelativeTo(null);
+        CargarFecha();
     }
 
     /**
@@ -45,6 +49,7 @@ public class Reportes extends javax.swing.JFrame {
         lbl_imagen = new javax.swing.JLabel();
         btn_users = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        CB_Fecha = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes");
@@ -57,6 +62,9 @@ public class Reportes extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(52, 73, 94));
 
+        btn_inventario.setBackground(new java.awt.Color(77, 19, 209));
+        btn_inventario.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_inventario.setForeground(new java.awt.Color(255, 255, 255));
         btn_inventario.setText("Inventario");
         btn_inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,10 +72,21 @@ public class Reportes extends javax.swing.JFrame {
             }
         });
 
+        btn_venta.setBackground(new java.awt.Color(77, 19, 209));
+        btn_venta.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_venta.setForeground(new java.awt.Color(255, 255, 255));
         btn_venta.setText("Ventas");
+        btn_venta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ventaActionPerformed(evt);
+            }
+        });
 
         jScrollPane1.setViewportView(lbl_imagen);
 
+        btn_users.setBackground(new java.awt.Color(77, 19, 209));
+        btn_users.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_users.setForeground(new java.awt.Color(255, 255, 255));
         btn_users.setText("Usuarios");
         btn_users.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +111,8 @@ public class Reportes extends javax.swing.JFrame {
                     .addComponent(btn_inventario, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                     .addComponent(btn_venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_users, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CB_Fecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -100,9 +120,11 @@ public class Reportes extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(CB_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
                         .addComponent(btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addComponent(btn_venta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -110,9 +132,7 @@ public class Reportes extends javax.swing.JFrame {
                         .addComponent(btn_users, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48)
                         .addComponent(btn_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -169,6 +189,23 @@ public class Reportes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btn_salirActionPerformed
 
+    private void btn_ventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ventaActionPerformed
+        Nodo_EjeZ aux = s.fecha.Buscar(CB_Fecha.getSelectedItem().toString());
+        if (aux != null){
+            aux.matriz.Graficar();
+            archivo = new File("MatrizVentas.jpg");
+            imagen = gestion.Imagen(archivo);
+            lbl_imagen.setIcon(new ImageIcon(imagen));
+        }
+    }//GEN-LAST:event_btn_ventaActionPerformed
+    
+    public void CargarFecha(){
+          Nodo_EjeZ aux = s.fecha.getPrimero();
+          while(aux != null){
+              CB_Fecha.addItem(aux.getFecha());
+              aux = aux.getSiguiente();
+          }
+    }
     /**
      * @param args the command line arguments
      */
@@ -205,6 +242,7 @@ public class Reportes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_Fecha;
     private javax.swing.JButton btn_inventario;
     private javax.swing.JButton btn_salir;
     private javax.swing.JButton btn_users;
